@@ -23,7 +23,7 @@ class RegistrationTest extends TestCase
     public function can_register()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv@gmail.com')
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
@@ -39,7 +39,7 @@ class RegistrationTest extends TestCase
     public function email_is_required()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', '')
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
@@ -52,7 +52,7 @@ class RegistrationTest extends TestCase
     public function email_is_valid_email()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv')
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
@@ -65,13 +65,13 @@ class RegistrationTest extends TestCase
     public function email_has_already_been_taken()
     {
         User::create([
-            'name'  =>  'miki',
+            'username'  =>  'miki',
             'email' => 'mikiasgv@gmail.com',
             'password' => Hash::make('secret')
         ]);
 
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv@gmail.com')
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'secret')
@@ -84,13 +84,13 @@ class RegistrationTest extends TestCase
     public function see_email_has_already_been_taken_validation_message()
     {
         User::create([
-            'name'  =>  'miki',
+            'username'  =>  'miki',
             'email' => 'mikiasgv@gmail.com',
             'password' => Hash::make('secret')
         ]);
 
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasg@gmail.com')
             ->assertHasNoErrors()
             ->set('email', 'mikiasgv@gmail.com')
@@ -102,7 +102,7 @@ class RegistrationTest extends TestCase
     public function password_is_required()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv@gmail.com')
             ->set('password', '')
             ->set('passwordConfirmation', 'secret')
@@ -115,7 +115,7 @@ class RegistrationTest extends TestCase
     public function password_is_min_six_characters()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv@gmail.com')
             ->set('password', 'sec')
             ->set('passwordConfirmation', 'secret')
@@ -128,7 +128,7 @@ class RegistrationTest extends TestCase
     public function password_not_matching_password_confirmation()
     {
         Livewire::test('auth.register')
-            ->set('name', 'testuser')
+            ->set('username', 'testuser')
             ->set('email', 'mikiasgv@gmail.com')
             ->set('password', 'secret')
             ->set('passwordConfirmation', 'not-secret')

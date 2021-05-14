@@ -22,6 +22,8 @@ class Profile extends Component
             'about' => 'max:140',
         ]);
 
+
+
         auth()->user()->update($profileData);
 
         $this->emitSelf('notify-saved');

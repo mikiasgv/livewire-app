@@ -9,12 +9,11 @@
                 </label>
 
                 <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <div class="max-w-lg flex rounded-md shadow-sm">
-                        <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 sm:text-sm">
-                            surge.com/
-                        </span>
-                        <input wire:model="username" id="username" class="flex-1 form-input block w-full rounded-none rounded-r-md transition duration-150 ease-in-out sm:text-sm sm:leading-5" />
-                    </div>
+                    <x-input.text
+                        wire:model="username"
+                        id="username"
+                        leading-add-on="surge.com/"
+                    />
 
                     @error('username') <div class="mt-1 text-red-500 text-sm">{{ $message }}</div> @enderror
                 </div>
@@ -87,3 +86,4 @@
         </div>
     </form>
 </div>
+
