@@ -17,12 +17,17 @@
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
 
     @livewireStyles
+    @stack('styles')
+    <link rel="stylesheet" href="{{ asset('css/vendor/trix.css')}}">
+
 </head>
 
 <body class="antialiased font-sans bg-gray-200">
-    @yield('content')
+    {{ $slot }}
 
     @livewireScripts
+    @stack('scripts')
+    <script src="{{asset('js/vendor/trix.js')}}"></script>
 </body>
 
 </html>

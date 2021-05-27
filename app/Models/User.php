@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -20,7 +22,9 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'about'
+        'about',
+        'birthday',
+        'avatar'
     ];
 
     /**
@@ -40,5 +44,13 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birthday' => 'date'
     ];
+
+    public function avatarUrl()
+    {
+        return $this->avatar
+                    ? Storage::disk('avatars')->url($this->avatar)
+                    : 'https://www.gravatar.com/avatar/' . md5(Str::lower(trim($this->email)));
+    }
 }

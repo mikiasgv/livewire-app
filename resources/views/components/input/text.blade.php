@@ -1,5 +1,5 @@
 @props([
-    'leadingAddOn' => false
+    'leadingAddOn' => false,
 ])
 
 <div class="max-w-lg flex rounded-md shadow-sm">
